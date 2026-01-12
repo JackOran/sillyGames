@@ -80,6 +80,21 @@ document.addEventListener('DOMContentLoaded', function() {
     noBtn.addEventListener('click', function() {
         noClickCount++;
         
+        // 检查是否是最后一次点击（第10次）
+        if (noClickCount === 10) {
+            // 隐藏蓝色按钮
+            noBtn.style.display = 'none';
+            
+            // 显示消息
+            message.innerHTML = '<p>因为你拒绝太多次，所以自动同意</p>';
+            
+            // 短暂延迟后自动触发同意按钮的点击事件
+            setTimeout(() => {
+                yesBtn.click();
+            }, 1000);
+            return;
+        }
+        
         // 增加"可以"按钮的大小（每次增大更多）
         const currentFontSize = parseInt(window.getComputedStyle(yesBtn).fontSize);
         const currentPadding = parseInt(window.getComputedStyle(yesBtn).padding);
@@ -170,13 +185,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 // 更新按钮文字
                 noBtn.textContent = '不许点这个！';
                 
-                // 更改卡通形象的表情（添加生气的效果）
+                // 更改卡通形象的表情（添加更伤心的效果）
                 character.innerHTML = `
                     <svg width="200" height="200" viewBox="0 0 100 100">
                         <circle cx="50" cy="40" r="25" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
-                        <path d="M40 35 L45 35" stroke="#333" stroke-width="2"/>
-                        <path d="M55 35 L60 35" stroke="#333" stroke-width="2"/>
-                        <path d="M45 48 Q50 52 55 48" stroke="#333" stroke-width="1" fill="none"/>
+                        <circle cx="42" cy="37" r="3" fill="#333"/>
+                        <circle cx="58" cy="37" r="3" fill="#333"/>
+                        <path d="M45 50 Q50 46 55 50" stroke="#333" stroke-width="1" fill="none"/>
                         <rect x="40" y="60" width="20" height="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
                         <path d="M45 65 L40 75" stroke="#333" stroke-width="1"/>
                         <path d="M55 65 L60 75" stroke="#333" stroke-width="1"/>
@@ -184,7 +199,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         <path d="M48 20 L52 20" stroke="#333" stroke-width="1"/>
                         <circle cx="65" cy="25" r="5" fill="#e0e0e0"/>
                         <path d="M70 20 L75 15 M70 30 L75 35" stroke="#333" stroke-width="1"/>
-                        <path d="M40 28 L42 26 M60 28 L58 26" stroke="#333" stroke-width="1"/>
+                        <path d="M43 32 L41 31 M59 32 L57 31" stroke="#333" stroke-width="1"/>
+                        <path d="M43 40 Q44 41 45 40" stroke="#ff6b81" stroke-width="1" fill="none"/>
+                        <path d="M53 40 Q54 41 55 40" stroke="#ff6b81" stroke-width="1" fill="none"/>
                     </svg>
                 `;
                 break;
@@ -214,21 +231,155 @@ document.addEventListener('DOMContentLoaded', function() {
                 break;
             case 4:
                 noBtn.textContent = '嘤嘤嘤...';
+                
+                // 更改卡通形象的表情（添加更伤心的效果）
+                character.innerHTML = `
+                    <svg width="200" height="200" viewBox="0 0 100 100">
+                        <circle cx="50" cy="40" r="25" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <circle cx="42" cy="37" r="3" fill="#333"/>
+                        <circle cx="58" cy="37" r="3" fill="#333"/>
+                        <path d="M45 50 Q50 45 55 50" stroke="#333" stroke-width="1" fill="none"/>
+                        <rect x="40" y="60" width="20" height="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <path d="M45 65 L40 75" stroke="#333" stroke-width="1"/>
+                        <path d="M55 65 L60 75" stroke="#333" stroke-width="1"/>
+                        <path d="M45 25 L55 25" stroke="#333" stroke-width="1"/>
+                        <path d="M48 20 L52 20" stroke="#333" stroke-width="1"/>
+                        <circle cx="65" cy="25" r="5" fill="#e0e0e0"/>
+                        <path d="M70 20 L75 15 M70 30 L75 35" stroke="#333" stroke-width="1"/>
+                        <path d="M43 32 L41 30 M59 32 L57 30" stroke="#333" stroke-width="1"/>
+                        <path d="M43 40 Q45 43 47 40" stroke="#ff6b81" stroke-width="1" fill="none"/>
+                        <path d="M53 40 Q55 43 57 40" stroke="#ff6b81" stroke-width="1" fill="none"/>
+                    </svg>
+                `;
                 break;
             case 5:
                 noBtn.textContent = '人家只是想喝奶茶嘛';
+                
+                // 更改卡通形象的表情（添加更伤心的效果）
+                character.innerHTML = `
+                    <svg width="200" height="200" viewBox="0 0 100 100">
+                        <circle cx="50" cy="40" r="25" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <circle cx="42" cy="37" r="3" fill="#333"/>
+                        <circle cx="58" cy="37" r="3" fill="#333"/>
+                        <path d="M45 50 Q50 45 55 50" stroke="#333" stroke-width="1" fill="none"/>
+                        <rect x="40" y="60" width="20" height="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <path d="M45 65 L40 75" stroke="#333" stroke-width="1"/>
+                        <path d="M55 65 L60 75" stroke="#333" stroke-width="1"/>
+                        <path d="M45 25 L55 25" stroke="#333" stroke-width="1"/>
+                        <path d="M48 20 L52 20" stroke="#333" stroke-width="1"/>
+                        <circle cx="65" cy="25" r="5" fill="#e0e0e0"/>
+                        <path d="M70 20 L75 15 M70 30 L75 35" stroke="#333" stroke-width="1"/>
+                        <path d="M43 32 L41 30 M59 32 L57 30" stroke="#333" stroke-width="1"/>
+                        <path d="M43 40 L43 50" stroke="#ff6b81" stroke-width="1"/>
+                        <path d="M57 40 L57 50" stroke="#ff6b81" stroke-width="1"/>
+                    </svg>
+                `;
                 break;
             case 6:
                 noBtn.textContent = 'QAQ 好可怜';
+                
+                // 更改卡通形象的表情（添加更伤心的效果）
+                character.innerHTML = `
+                    <svg width="200" height="200" viewBox="0 0 100 100">
+                        <circle cx="50" cy="40" r="25" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <circle cx="42" cy="37" r="3" fill="#333"/>
+                        <circle cx="58" cy="37" r="3" fill="#333"/>
+                        <path d="M45 50 Q50 45 55 50" stroke="#333" stroke-width="1" fill="none"/>
+                        <rect x="40" y="60" width="20" height="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <path d="M45 65 L40 75" stroke="#333" stroke-width="1"/>
+                        <path d="M55 65 L60 75" stroke="#333" stroke-width="1"/>
+                        <path d="M45 25 L55 25" stroke="#333" stroke-width="1"/>
+                        <path d="M48 20 L52 20" stroke="#333" stroke-width="1"/>
+                        <circle cx="65" cy="25" r="5" fill="#e0e0e0"/>
+                        <path d="M70 20 L75 15 M70 30 L75 35" stroke="#333" stroke-width="1"/>
+                        <path d="M43 32 L41 30 M59 32 L57 30" stroke="#333" stroke-width="1"/>
+                        <circle cx="40" cy="35" r="2" fill="#ffcccc" stroke="#333" stroke-width="0.5"/>
+                        <circle cx="60" cy="35" r="2" fill="#ffcccc" stroke="#333" stroke-width="0.5"/>
+                        <path d="M43 40 L43 50" stroke="#ff6b81" stroke-width="1"/>
+                        <path d="M57 40 L57 50" stroke="#ff6b81" stroke-width="1"/>
+                    </svg>
+                `;
                 break;
             case 7:
                 noBtn.textContent = '求你了好不好';
+                
+                // 更改卡通形象的表情（添加更伤心的效果）
+                character.innerHTML = `
+                    <svg width="200" height="200" viewBox="0 0 100 100">
+                        <circle cx="50" cy="40" r="25" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <circle cx="42" cy="37" r="3" fill="#333"/>
+                        <circle cx="58" cy="37" r="3" fill="#333"/>
+                        <path d="M45 50 Q50 45 55 50" stroke="#333" stroke-width="1" fill="none"/>
+                        <rect x="40" y="60" width="20" height="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <path d="M45 65 L40 75" stroke="#333" stroke-width="1"/>
+                        <path d="M55 65 L60 75" stroke="#333" stroke-width="1"/>
+                        <path d="M45 25 L55 25" stroke="#333" stroke-width="1"/>
+                        <path d="M48 20 L52 20" stroke="#333" stroke-width="1"/>
+                        <circle cx="65" cy="25" r="5" fill="#e0e0e0"/>
+                        <path d="M70 20 L75 15 M70 30 L75 35" stroke="#333" stroke-width="1"/>
+                        <path d="M43 32 L41 30 M59 32 L57 30" stroke="#333" stroke-width="1"/>
+                        <circle cx="40" cy="35" r="3" fill="#ffcccc" stroke="#333" stroke-width="0.5"/>
+                        <circle cx="60" cy="35" r="3" fill="#ffcccc" stroke="#333" stroke-width="0.5"/>
+                        <path d="M43 40 L43 55" stroke="#ff6b81" stroke-width="1.5"/>
+                        <path d="M57 40 L57 55" stroke="#ff6b81" stroke-width="1.5"/>
+                    </svg>
+                `;
                 break;
             case 8:
                 noBtn.textContent = '再点我就哭了';
+                
+                // 更改卡通形象的表情（添加更伤心的效果）
+                character.innerHTML = `
+                    <svg width="200" height="200" viewBox="0 0 100 100">
+                        <circle cx="50" cy="40" r="25" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <circle cx="42" cy="37" r="3" fill="#333"/>
+                        <circle cx="58" cy="37" r="3" fill="#333"/>
+                        <path d="M45 50 Q50 47 55 50" stroke="#333" stroke-width="1" fill="none"/>
+                        <rect x="40" y="60" width="20" height="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <path d="M45 65 L40 75" stroke="#333" stroke-width="1"/>
+                        <path d="M55 65 L60 75" stroke="#333" stroke-width="1"/>
+                        <path d="M45 25 L55 25" stroke="#333" stroke-width="1"/>
+                        <path d="M48 20 L52 20" stroke="#333" stroke-width="1"/>
+                        <circle cx="65" cy="25" r="5" fill="#e0e0e0"/>
+                        <path d="M70 20 L75 15 M70 30 L75 35" stroke="#333" stroke-width="1"/>
+                        <path d="M43 32 L41 30 M59 32 L57 30" stroke="#333" stroke-width="1"/>
+                        <circle cx="40" cy="35" r="3" fill="#ffcccc" stroke="#333" stroke-width="0.5"/>
+                        <circle cx="60" cy="35" r="3" fill="#ffcccc" stroke="#333" stroke-width="0.5"/>
+                        <path d="M43 40 L43 55" stroke="#ff6b81" stroke-width="1.5"/>
+                        <path d="M57 40 L57 55" stroke="#ff6b81" stroke-width="1.5"/>
+                        <path d="M42 45 Q43 46 44 45" stroke="#ff6b81" stroke-width="1" fill="none"/>
+                        <path d="M56 45 Q57 46 58 45" stroke="#ff6b81" stroke-width="1" fill="none"/>
+                    </svg>
+                `;
                 break;
             case 9:
                 noBtn.textContent = '最后一次机会了';
+                
+                // 更改卡通形象的表情（添加最伤心的效果）
+                character.innerHTML = `
+                    <svg width="200" height="200" viewBox="0 0 100 100">
+                        <circle cx="50" cy="40" r="25" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <circle cx="42" cy="38" r="3" fill="#333"/>
+                        <circle cx="58" cy="38" r="3" fill="#333"/>
+                        <path d="M45 52 Q50 48 55 52" stroke="#333" stroke-width="1" fill="none"/>
+                        <rect x="40" y="60" width="20" height="15" fill="#f5f5f5" stroke="#333" stroke-width="1"/>
+                        <path d="M45 65 L40 75" stroke="#333" stroke-width="1"/>
+                        <path d="M55 65 L60 75" stroke="#333" stroke-width="1"/>
+                        <path d="M45 25 L55 25" stroke="#333" stroke-width="1"/>
+                        <path d="M48 20 L52 20" stroke="#333" stroke-width="1"/>
+                        <circle cx="65" cy="25" r="5" fill="#e0e0e0"/>
+                        <path d="M70 20 L75 15 M70 30 L75 35" stroke="#333" stroke-width="1"/>
+                        <path d="M43 32 L41 30 M59 32 L57 30" stroke="#333" stroke-width="1"/>
+                        <circle cx="40" cy="35" r="4" fill="#ffcccc" stroke="#333" stroke-width="0.5"/>
+                        <circle cx="60" cy="35" r="4" fill="#ffcccc" stroke="#333" stroke-width="0.5"/>
+                        <path d="M43 40 L43 55" stroke="#ff6b81" stroke-width="2"/>
+                        <path d="M57 40 L57 55" stroke="#ff6b81" stroke-width="2"/>
+                        <path d="M42 45 Q43 46 44 45" stroke="#ff6b81" stroke-width="1" fill="none"/>
+                        <path d="M56 45 Q57 46 58 45" stroke="#ff6b81" stroke-width="1" fill="none"/>
+                        <path d="M41 50 Q42 51 43 50" stroke="#ff6b81" stroke-width="1" fill="none"/>
+                        <path d="M57 50 Q58 51 59 50" stroke="#ff6b81" stroke-width="1" fill="none"/>
+                    </svg>
+                `;
                 break;
             case 10:
                 noBtn.textContent = '不要抛弃我...';
